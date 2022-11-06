@@ -7,7 +7,7 @@ abstract class BaseModel<T> implements IModel<T> {
 
   constructor(model:Model<T>) {
     this._model = model;
-  }  
+  }
 
   public async update(_id: string, obj: Partial<T>): Promise<T | null> {
     if (!isValidObjectId(_id)) throw Error(ErrorTypes.InvalidMongoId);
@@ -24,8 +24,8 @@ abstract class BaseModel<T> implements IModel<T> {
     return this._model.findOne({ _id });
   }
 
-  public async read(): Promise<T[]> {
-    return this._model.find();
+  public async read(obj: object): Promise<T[]> {
+    return this._model.find({ ... obj });
   }
 
   public async create(obj:T):Promise<T> {

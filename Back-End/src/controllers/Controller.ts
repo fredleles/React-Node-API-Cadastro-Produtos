@@ -32,5 +32,11 @@ export default class Controller<T> {
     const data = req.body;
     const response = await this._service.create(data);
     res.status(201).json(response);
+  }  
+
+  public async find(req: Request, res: Response) {
+    const { q } = req.query;
+    const response = await this._service.find(q);
+    res.status(200).json(response);
   }
 }

@@ -6,7 +6,9 @@ const route = Router();
 
 const PRODUCTS_URL = '/produtos';
 const PRODUCTS_ID_URL = '/produtos/:id';
+const PRODUCTS_FIND_URL = '/produtos/find';
 
+route.get(PRODUCTS_FIND_URL, (req, res) => ControllersFactory.GetProductsController().find(req, res));
 route.delete(PRODUCTS_ID_URL, (req, res) => ControllersFactory.GetProductsController().delete(req, res));
 route.put(PRODUCTS_ID_URL, (req, res) => ControllersFactory.GetProductsController().update(req, res));
 route.patch(PRODUCTS_ID_URL, (req, res) => ControllersFactory.GetProductsController().update(req, res));
