@@ -29,8 +29,26 @@ export default abstract class BaseServices<T> implements IServices<T> {
     return response;
   }
 
-  read(): Promise<T[]> {
-    return this._model.read();
+  async read(): Promise<T[]> {
+    return this._model.read({});
+  }
+
+  async find(query: unknown): Promise<T[]> {
+    if (!query || query === '') throw Error(ErrorTypes.InputParametersNotFound);
+    const words = query.toString().split('-');
+
+    const searchList = words.map((word) => {
+      const searchRgx = new RegExp(word + '', 'i');
+      return ({
+        $or: [
+          { produto: { $regex: searchRgx } },
+          { descricao: { $regex: searchRgx } },
+        ],
+      });
+    });
+
+    const opt = { $and: searchList };
+    return this._model.read(opt);
   }
 
   abstract create(obj:unknown) : Promise<T>;
