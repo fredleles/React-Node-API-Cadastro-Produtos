@@ -1,20 +1,27 @@
-import { Model } from 'mongoose';
+import { isValidObjectId, Model, UpdateQuery } from 'mongoose';
 import { IModel } from './IModel';
+import { ErrorTypes } from '../utils/errorsCatalog';
 
 abstract class BaseModel<T> implements IModel<T> {
   protected _model:Model<T>;
 
   constructor(model:Model<T>) {
     this._model = model;
+  }  
+
+  public async update(_id: string, obj: Partial<T>): Promise<T | null> {
+    if (!isValidObjectId(_id)) throw Error(ErrorTypes.InvalidMongoId);
+    return this._model.findByIdAndUpdate({ _id }, { ...obj } as UpdateQuery<T>);
   }
-  readOne(_id: string): Promise<T | null> {
-    throw new Error('Method not implemented.');
+
+  public async delete(_id: string): Promise<T | null> {
+    if (!isValidObjectId(_id)) throw Error(ErrorTypes.InvalidMongoId);
+    return this._model.findByIdAndDelete({ _id });
   }
-  update(_id: string, obj: T): Promise<T | null> {
-    throw new Error('Method not implemented.');
-  }
-  delete(_id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+
+  public async readOne(_id:string):Promise<T | null> {
+    if (!isValidObjectId(_id)) throw Error(ErrorTypes.InvalidMongoId);
+    return this._model.findOne({ _id });
   }
 
   public async read(): Promise<T[]> {
