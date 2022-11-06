@@ -9,6 +9,10 @@ export default class ProductsServices extends BaseServices<IProduct> {
     if (!parsed.success) {
       throw parsed.error;
     }
-    return this._model.create(parsed.data);
+    return this._model.create({
+      ...parsed.data,
+      created: new Date(Date.now()),
+      updated: new Date(Date.now()),
+    });
   }
 }

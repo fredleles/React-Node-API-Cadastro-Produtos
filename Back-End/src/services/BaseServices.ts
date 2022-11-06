@@ -16,7 +16,7 @@ export default abstract class BaseServices<T> implements IServices<T> {
 
   async update(_id: string, obj: unknown): Promise<T | null> {
     if (!obj || JSON.stringify(obj) === '{}') throw Error(ErrorTypes.InputParametersNotFound);
-    const edited = await this._model.update(_id, obj as T);
+    const edited = await this._model.update(_id, { ...obj, updated: Date.now() } as T);
     if (!edited) throw Error(ErrorTypes.EntityNotFound);
   
     const response = await this._model.readOne(_id);
