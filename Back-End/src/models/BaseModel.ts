@@ -13,7 +13,7 @@ abstract class BaseModel<T> implements IModel<T> {
   update(_id: string, obj: T): Promise<T | null> {
     throw new Error('Method not implemented.');
   }
-  delete(_id: string): void {
+  delete(_id: string): Promise<void> {
     throw new Error('Method not implemented.');
   }
 
