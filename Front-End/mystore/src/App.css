@@ -12,12 +12,18 @@
 }
 
 .App-header {
-  background-color: var(--primary);
-  height: 70px;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  background-color: var(--primary);
   color: white;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  padding: 0 20px;
+  text-align: left;
+}
+
+.App-header div {
+  width: 50vw;
 }
 
 .App-link {
@@ -210,4 +216,28 @@ main {
   height: 100vh;
   opacity: 90%;
   width: 100vw;
+}
+
+.searchText {
+  background-color: var(--primary-bright);
+  align-items: center;
+  display: flex;
+  height: 70px;
+  margin: 0;
+}
+
+#searchText {
+  background-color: var(--primary-bright);
+  border-style: none;
+  border-bottom: 2px solid var(--primary-bright);
+  color: var(--secondary);
+  font-size: larger;
+  font-weight: bold;
+  margin: 0;
+  width: 40vw;
+}
+
+.searchBtn {
+  background-color: var(--primary);
+  border-style: none;
 }

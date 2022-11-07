@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { requestGet } from './fetchApi';
 
 export const AppContext = React.createContext({});
 
@@ -9,13 +8,6 @@ function AppProvider({ children }) {
   const [selectedId, setSelectedId] = useState(null);
   const [products, setProducts] = useState([]);
   const [showModal, setShowModal] = useState({ status: false, edit: false });
-
-
-  const fetchProducts = async () => {
-    const list = await requestGet('api/produtos');
-    if (!list) console.log({ error: 'Cannot reach the DB' });
-    setProducts(list);
-  };
 
   const updateFav = (product) => {
     setFavorites((aFav) => {
@@ -39,7 +31,7 @@ function AppProvider({ children }) {
     getProductFav,
     selectedId,
     setSelectedId,
-    fetchProducts,
+    setProducts,
     products,
     showModal,
     setShowModal,

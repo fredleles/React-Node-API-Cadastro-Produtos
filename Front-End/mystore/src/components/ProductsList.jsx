@@ -7,12 +7,7 @@ export default function ProductsList() {
     setSelectedId,
     selectedId,
     products,
-    fetchProducts,
   } = useContext(AppContext);
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   useEffect(() => {
     products.forEach((p) => {
