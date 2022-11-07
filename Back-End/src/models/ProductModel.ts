@@ -7,6 +7,7 @@ const productsSchema = new Schema<IProduct>(
     produto: String,
     valor: Number,
     descricao: String,
+    tipo: String,
     created: Date,
     updated: Date,
   },
