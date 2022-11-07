@@ -43,6 +43,7 @@ export default abstract class BaseServices<T> implements IServices<T> {
         $or: [
           { produto: { $regex: searchRgx } },
           { descricao: { $regex: searchRgx } },
+          { tipo: { $regex: searchRgx } },
         ],
       });
     });
