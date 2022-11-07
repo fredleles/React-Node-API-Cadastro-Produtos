@@ -11,8 +11,7 @@ export default function ProductDetails() {
     async function fetchProductId() {
       const productDetails = await requestGet(`api/produtos/${selectedId}`);
       if (!productDetails) console.log({ error: 'Cannot reach the DB' });
-
-      setProduct(productDetails);
+      else setProduct(productDetails);
     }
     if(selectedId) fetchProductId();
   }, [selectedId]);
