@@ -5,7 +5,7 @@ import SaveBtn from './SaveBtn';
 
 export default function ProductDetails() {
   const [product, setProduct] = useState();
-  const { selectedId } = useContext(AppContext);
+  const { selectedId, setShowModal } = useContext(AppContext);
 
   useEffect(() => {
     async function fetchProductId() {
@@ -36,6 +36,7 @@ export default function ProductDetails() {
               <button
                 type="button"
                 className="btn btnAction"
+                onClick={ () => setShowModal({ status: true, edit: true }) }
               >
                 EDITAR
               </button>

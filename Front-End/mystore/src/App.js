@@ -10,7 +10,7 @@ function App() {
   const { setShowModal, showModal } = useContext(AppContext);
   return (
     <div className="App">
-      { showModal ? <Modal /> : null }
+      { showModal.status ? <Modal /> : null }
       <Header />
       <main>
         <div className="Main-header">
@@ -18,7 +18,7 @@ function App() {
           <div>
             <button
               type="button"
-              onClick={ () => setShowModal(true) }
+              onClick={ () => setShowModal({ status: true, edit: false }) }
             >
               +
             </button>

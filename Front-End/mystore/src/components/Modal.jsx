@@ -2,28 +2,28 @@ import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from '../services/AppProvider';
 import { requestGet, requestPost, requestPut } from '../services/fetchApi';
 
-export default function Modal({ id }) {
+export default function Modal() {
   const [data, setData] = useState({
     produto: '',
     valor: '',
     descricao: '',
     tipo: '',
   });
-  const { setShowModal, fetchProducts } = useContext(AppContext);
+  const { setShowModal, fetchProducts, showModal, selectedId } = useContext(AppContext);
 
   useEffect(() => {
     async function fetchProduct() {
-      const productDetails = await requestGet(`api/produtos/${id}`);
+      const productDetails = await requestGet(`api/produtos/${selectedId}`);
       if (!productDetails) console.log({ error: 'Cannot reach the DB' });
       else setData((state) => ({
         ...state,
         ...productDetails,
       }));
     }
-    if (id) {
+    if (showModal.edit) {
       fetchProduct();
     }
-  }, [id]);
+  }, [showModal]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,8 +34,8 @@ export default function Modal({ id }) {
         ...data,
         valor: parseFloat(data.valor),
       };
-      if (!id) res = await requestPost('api/produtos', payload);
-      else res = await requestPut(`api/produtos/${id}`, payload);
+      if (!showModal.edit) res = await requestPost('api/produtos', payload);
+      else res = await requestPut(`api/produtos/${selectedId}`, payload);
       if (!res._id) console.log('Erro ao inserir dados');
       else {
         await fetchProducts();
@@ -112,7 +112,7 @@ export default function Modal({ id }) {
           <button
             className="btn btnAction"
             type="button"
-            onClick={ () => setShowModal(false) }
+            onClick={ () => setShowModal({ status: false, edit: false }) }
           >
             FECHAR
           </button>
