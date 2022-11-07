@@ -1,9 +1,18 @@
+:root {
+  --primary: #222D35;
+  --primary-bright: #2D3F46;
+  --textPrimary: #50AA97;
+  --secondary: #C0C5C6;
+}
+
 .App {
+  margin: 0;
   text-align: center;
+  width: 100vw;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--primary);
   height: 70px;
   display: flex;
   align-items: center;
@@ -13,4 +22,111 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.btn {
+  border-style: none;
+  cursor: pointer;
+}
+
+.btnAction {
+  background-color: var(--primary);
+  color: whitesmoke;
+  height: 40px;
+  font-size: 15px;
+  width: 120px;
+}
+
+.color-primary {
+  color: var(--primary);
+}
+
+.color-primary-bright {
+  color: var(--primary-bright);
+}
+
+.color-text-primary {
+  color: var(--textPrimary);
+}
+
+.color-secondary {
+  color: var(--secondary);
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.content-details {
+  background-color: #F1F2F0;
+  height: 100%;
+  margin: auto;
+  padding: 2px 10px;
+  width: 100%;
+}
+
+.content-details-main {
+  height: 80%;
+  overflow-y: auto;
+  overflow-wrap: break-word;
+}
+
+.content-details-footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  height: 10%;
+}
+
+.content-List {
+  display: block;
+  height: inherit;
+  margin: auto;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.content-List-Item {
+  align-items: center;
+  display: flex;
+  height: 80px;
+  margin: auto;
+  padding: 0;
+  width: 100%;  
+}
+
+.content-List-Item div {
+  line-height: 5px;
+  margin: auto;
+  padding: 0 10px;
+}
+
+.content-List-Item div:first-child {
+  text-align: left;
+  width: 90%;
+}
+
+main {
+  margin: 0;
+  padding: 10px 100px;
+}
+
+.Main-content {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0;
+  width: 100%;
+}
+
+.Main-content-item {
+  height: 60vh;
+  margin: auto;
+  text-align: left;
+  width: 45%;
+}
+
+.Main-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
