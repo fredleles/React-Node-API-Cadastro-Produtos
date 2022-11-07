@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from './components/Header';
 import ProductDetails from './components/ProductDetails';
 import ProductsList from './components/ProductsList';
+import Modal from './components/Modal';
+import { AppContext } from './services/AppProvider';
 import './App.css';
 
 function App() {
+  const { setShowModal, showModal } = useContext(AppContext);
   return (
     <div className="App">
+      { showModal ? <Modal /> : null }
       <Header />
       <main>
         <div className="Main-header">
@@ -14,6 +18,7 @@ function App() {
           <div>
             <button
               type="button"
+              onClick={ () => setShowModal(true) }
             >
               +
             </button>

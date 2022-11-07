@@ -8,6 +8,7 @@ function AppProvider({ children }) {
   const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) ?? []);
   const [selectedId, setSelectedId] = useState(null);
   const [products, setProducts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const fetchProducts = async () => {
     const list = await requestGet('api/produtos');
@@ -39,7 +40,9 @@ function AppProvider({ children }) {
     setSelectedId,
     fetchProducts,
     products,
-  }), [favorites, selectedId, products]);
+    showModal,
+    setShowModal,
+  }), [favorites, selectedId, products, showModal]);
 
   return (
     <AppContext.Provider value={ contextValue }>

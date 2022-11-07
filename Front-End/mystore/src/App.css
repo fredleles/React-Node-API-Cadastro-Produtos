@@ -106,6 +106,10 @@
   width: 90%;
 }
 
+.input_error {
+  border: 2px solid red;
+}
+
 main {
   margin: 0;
   padding: 10px 100px;
@@ -129,4 +133,81 @@ main {
   align-items: center;
   display: flex;
   justify-content: space-between;
+}
+
+.modal {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+}
+
+.modal input {
+  background-color: var(--secondary);
+  border-style: none;
+  border-bottom: 2px solid var(--textPrimary);
+  margin-top: 10px;
+}
+
+.modal-header {
+  display: flex;
+  height: 10vh;
+  justify-content: space-between;
+}
+
+.modal-header div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.modal-desc {
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.modal-desc textarea {
+  background-color: var(--secondary);
+  border-style: none;
+  border-bottom: 2px solid var(--textPrimary);
+  height: 5vw;
+  margin-top: 10px;
+  resize: none;
+}
+
+.modal-footer {
+  height: 10vh;
+  text-align: right;
+}
+
+.modal-footer button {
+  border-style: none;
+  margin-left: 20px;
+}
+
+.inner-modal {
+  align-self: center;
+  background-color: var(--secondary);
+  height: 50vh;
+  margin: 0;
+  opacity: 100%;
+  padding: 15px;
+  position: absolute;
+  text-align: left;
+  width: 50vw;
+}
+
+.inner-modal h3 {
+  color: var(--primary-bright);
+  font-size: large;
+}
+
+.outer-modal {
+  background-color: #222D35;
+  height: 100vh;
+  opacity: 90%;
+  width: 100vw;
 }
