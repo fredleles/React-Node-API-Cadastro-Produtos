@@ -1,15 +1,25 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { requestGet } from './fetchApi';
 
 export const AppContext = React.createContext({});
 
 function AppProvider({ children }) {
   const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) ?? []);
+  const [selectedId, setSelectedId] = useState(null);
+  const [products, setProducts] = useState([]);
 
-  const updateFav = (product, isFav) => {
+  const fetchProducts = async () => {
+    const list = await requestGet('api/produtos');
+    if (!list) console.log({ error: 'Cannot reach the DB' });
+    setProducts(list);
+  };
+
+  const updateFav = (product) => {
     setFavorites((aFav) => {
+      const isFav = aFav.find((f) => f._id === product._id);
       const newFavList = aFav.filter((item) => item._id !== product._id);
-      if (isFav) newFavList.push(product);
+      if (!isFav) newFavList.push(product);
       localStorage.setItem('favorites', JSON.stringify(newFavList));
       return newFavList;
     });
@@ -25,7 +35,11 @@ function AppProvider({ children }) {
     favorites,
     updateFav,
     getProductFav,
-  }), [favorites]);
+    selectedId,
+    setSelectedId,
+    fetchProducts,
+    products,
+  }), [favorites, selectedId, products]);
 
   return (
     <AppContext.Provider value={ contextValue }>
